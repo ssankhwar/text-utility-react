@@ -7,20 +7,35 @@ export default function TextArea(props) {
     setText(e.target.value);
   };
   const handleUppercaseClick = () => {
-    let upperCaseText = text.toUpperCase();
-    setText(upperCaseText);
-    props.showAlert("Converted to Uppercase!","success")
+    if(text.length !== 0) {
+
+      let upperCaseText = text.toUpperCase();
+      setText(upperCaseText);
+      props.showAlert("Converted to Uppercase!","success")
+    }else{
+       props.showAlert("Please enter text!","warning")
+    }
   };
 
   const handleLowercaseClick = () => {
+      if(text.length !== 0) {
+
     let upperCaseText = text.toLowerCase();
     setText(upperCaseText);
     props.showAlert("Converted to Lowercase!","success")
+      }else{
+         props.showAlert("Please enter text!","warning")
+      }
   };
 
   const handleClearClick = () => {
+      if(text.length !== 0) {
+
     setText("");
     props.showAlert("Text Cleared!","success")
+      }else{
+        props.showAlert("Please enter text!","warning")
+      }
   };
 
   return (
@@ -39,19 +54,19 @@ export default function TextArea(props) {
             ></textarea>
           </div>
           <button
-            className="btn btn-outline-primary mx-2"
+            className="btn btn-outline-primary mx-2 my-2"
             onClick={handleUppercaseClick}
           >
             Convert to Uppercase
           </button>
           <button
       
-            className="btn btn-outline-primary mx-2"
+            className="btn btn-outline-primary mx-2 my-2"
             onClick={handleLowercaseClick}
           >
             Convert to Lowercase
           </button>
-          <button className="btn btn-outline-secondary mx-2" onClick={handleClearClick}>
+          <button className="btn btn-outline-secondary mx-2 my-2" onClick={handleClearClick}>
             Clear
           </button>
         </div>
@@ -59,7 +74,7 @@ export default function TextArea(props) {
           <h3>{props.heading2}</h3>
           <p>
             {" "}
-            {text.trim().split(/\s+/).filter(Boolean).length} words and{" "}
+            {text.split(" ").filter( e => {return e.length !== 0} ).length} words and{" "}
             {text.length} characters
           </p>
           <h3 className="my-3">
