@@ -36,7 +36,7 @@ export default function About(props) {
  
   return (
     <>
-   <div id="container my-3" style={customStyle}>
+   <div className="container my-3" style={customStyle}>
 
     <h1 className="my-3">About US</h1>
    

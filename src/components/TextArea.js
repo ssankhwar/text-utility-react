@@ -26,8 +26,8 @@ export default function TextArea(props) {
   return (
     <>
       <div >
-        <div id="container" className={`container my-3 text-${props.mode == 'dark'?'light':'dark'}`}>
-          <h1>{props.heading1}</h1>
+        <div  className={`container my-3 text-${props.mode === 'dark'?'light':'dark'}`}>
+          <h3>{props.heading1}</h3>
           <div className="mb-3">
             <textarea
               data-bs-theme={props.mode}
@@ -55,8 +55,8 @@ export default function TextArea(props) {
             Clear
           </button>
         </div>
-        <div  className={`container my-3 text-${props.mode == 'dark'?'light':'dark'}`}>
-          <h2>{props.heading2}</h2>
+        <div  className={`container my-3 text-${props.mode === 'dark'?'light':'dark'}`}>
+          <h3>{props.heading2}</h3>
           <p>
             {" "}
             {text.trim().split(/\s+/).filter(Boolean).length} words and{" "}
