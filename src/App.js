@@ -1,68 +1,58 @@
-
-import {  useState } from 'react';
-import './App.css';
-import About from './components/About';
-import Navbar from './components/Navbar';
-import TextArea from './components/TextArea';
-import Alert from './components/Alert';
-// import {
-//   BrowserRouter as Router,
-//   Route,
-//   Routes,
-//   // Link
-// } from "react-router-dom";
-
+import { useState } from "react";
+import "./App.css";
+import About from "./components/About";
+import Navbar from "./components/Navbar";
+import TextArea from "./components/TextArea";
+import Alert from "./components/Alert";
 
 function App() {
- const [mode, setMode] = useState('light');
- const [alert, setAlert] = useState(null);
+  const [mode, setMode] = useState("light");
+  const [alert, setAlert] = useState(null);
 
-  let showAlert = (msg,type)=>{
+  let showAlert = (msg, type) => {
     setAlert({
-      msg : msg,
-      type : type
-    })
+      msg: msg,
+      type: type,
+    });
     setTimeout(() => {
-      setAlert(null)
+      setAlert(null);
     }, 2500);
-  }
-
-   let toggleMode = ()=>{
-    if (mode === 'light')
-      {setMode('dark')
-        document.body.style.backgroundColor= '#0f172a';
-        showAlert("DarkMode Enabled!","success");
-    }else{
-      setMode('light')
-        document.body.style.backgroundColor = 'white';
-         showAlert("LightMode Enabled!","success")
+  };
+  let toggleMode = () => {
+    if (mode === "light") {
+      setMode("dark");
+      document.body.style.backgroundColor = "#0f172a";
+      showAlert("🌙 Dark mode enabled.", "success");
+    } else {
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+      showAlert("☀️ Light mode enabled.", "success");
     }
-   }
-  return (<>
-      {/* <Router> */}
-      <Navbar title="TextUtils" about="About" mode={mode} toggleMode={toggleMode}/>
-        
-   <div id="container my-3" >
-    <Alert alert={alert}/>
-     {/* <Routes>
-          <Route exact path="/about" element={<About mode={mode}  />}/>
-           */}
-          {/* <Route exact path="/"
-        element=  {  */}
-        <TextArea heading1="Enter text here to analyze..." 
-          heading2="Your Text Summary" mode={mode} showAlert={showAlert}/>
-          <About mode={mode}  />
-          {/* } /> */}
-         
-        {/* </Routes> */}
-     
-   
-   </div>
-      {/* </Router> */}
-  
-      </>
+  };
+  return (
+    <>
+      <Navbar
+        title="TextUtils"
+        about="About"
+        mode={mode}
+        toggleMode={toggleMode}
+      />
+
+      <div id="container my-3">
+        <Alert alert={alert} />
+        <TextArea
+          heading1="✍️ Enter or paste your text below to analyze"
+          heading2="📊 Text Summary"
+          mode={mode}
+          showAlert={showAlert}
+        />
+        <About mode={mode} />
+      </div>
+      <footer className={`container my-4 text-${mode === 'dark'?'light':'dark'}`}>
+       © 2025 TextUtils | Built by Shubham Sankhwar
+      </footer>
+    </>
   );
-    
 }
 
 export default App;
